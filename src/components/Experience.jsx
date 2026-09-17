@@ -1,46 +1,41 @@
 "use client";
 
 import React from "react";
-import { BriefcaseBusiness, CalendarDays } from "lucide-react";
+import { Briefcase, Calendar } from "lucide-react";
 
 const experiences = [
   {
-    company: "IT Consultant & Software Sales Specialist",
-    role: "Business & Technology Consultant",
-    duration: "2023 — Present",
     type: "Full-time",
-    description: [
+    role: "IT Consultant & Software Sales Specialist",
+    org: "Business & Technology Consultant",
+    period: "2023 — Present",
+    points: [
       "Consulted businesses on IT solutions, software requirements, and digital transformation strategies.",
       "Analyzed client requirements and recommended suitable software and technology solutions.",
       "Managed software sales processes from initial consultation to successful delivery.",
       "Built and maintained strong client relationships while identifying new business opportunities.",
-      "Collaborated with technical teams to ensure solutions matched business requirements.",
     ],
   },
   {
-    company: "E-Commerce Business Operations",
-    role: "E-Commerce & Business Operations",
-    duration: "2021 — 2023",
     type: "Full-time",
-    description: [
+    role: "E-Commerce Business Operations",
+    org: "E-Commerce & Business Operations",
+    period: "2022 — 2023",
+    points: [
       "Managed day-to-day e-commerce operations and digital business activities.",
       "Coordinated product management, customer communication, and online sales activities.",
       "Analyzed sales performance and customer behavior to improve business strategies.",
-      "Worked with digital marketing and technology teams to increase online visibility.",
-      "Improved operational workflows through technology-driven solutions.",
     ],
   },
   {
-    company: "Frontend Developer",
-    role: "React / Next.js Developer",
-    duration: "2020 — Present",
     type: "Freelance",
-    description: [
+    role: "Frontend Developer",
+    org: "React / Next.js Developer",
+    period: "2020 — Present",
+    points: [
       "Developed responsive and modern web applications using React.js and Next.js.",
       "Converted Figma and UI designs into pixel-perfect, reusable frontend components.",
-      "Built scalable interfaces using Tailwind CSS and modern JavaScript.",
       "Integrated REST APIs and backend services into production-ready applications.",
-      "Worked directly with international clients to understand requirements and deliver solutions.",
     ],
   },
 ];
@@ -49,364 +44,65 @@ function Experience() {
   return (
     <section
       id="experience"
-      className="
-        relative
-        w-full
-        overflow-hidden
-        bg-[#070C16]
-        py-24
-        sm:py-28
-      "
+      className="relative w-full overflow-hidden bg-[#070C16] px-5 py-24 text-white sm:px-8 lg:px-10"
     >
-      {/* =========================================
-          BACKGROUND GLOW
-      ========================================= */}
+      <div className="pointer-events-none absolute left-1/2 top-0 h-[400px] w-[400px] -translate-x-1/2 rounded-full bg-[#45A9F5]/[0.03] blur-[130px]" />
 
-      <div
-        className="
-          pointer-events-none
-          absolute
-          left-[-220px]
-          top-[25%]
-          h-[500px]
-          w-[500px]
-          rounded-full
-          bg-[#35F5B0]/[0.025]
-          blur-[140px]
-        "
-      />
-
-      <div
-        className="
-          pointer-events-none
-          absolute
-          right-[-220px]
-          bottom-[10%]
-          h-[450px]
-          w-[450px]
-          rounded-full
-          bg-[#45A9F5]/[0.025]
-          blur-[140px]
-        "
-      />
-
-      {/* =========================================
-          1280px CONTAINER
-      ========================================= */}
-
-      <div
-        className="
-          relative
-          mx-auto
-          w-full
-          max-w-[1280px]
-          px-5
-          sm:px-8
-          lg:px-10
-          xl:px-0
-        "
-      >
-        {/* =========================================
-            SECTION HEADER
-        ========================================= */}
-
-        <div className="mb-14 text-center">
-          {/* Small label */}
-
-          <div className="mb-4 flex items-center justify-center gap-3">
-            <span
-              className="
-                h-px
-                w-8
-                bg-gradient-to-r
-                from-transparent
-                to-[#35F5B0]
-              "
-            />
-
-            <span
-              className="
-                font-mono
-                text-[10px]
-                font-semibold
-                uppercase
-                tracking-[0.25em]
-                text-[#35F5B0]
-              "
-            >
-              Experience
-            </span>
-
-            <span
-              className="
-                h-px
-                w-8
-                bg-gradient-to-l
-                from-transparent
-                to-[#35F5B0]
-              "
-            />
-          </div>
-
-          <h2
-            className="
-              text-3xl
-              font-bold
-              tracking-[-0.03em]
-              text-[#F1F5F9]
-              sm:text-4xl
-            "
-          >
+      <div className="relative mx-auto max-w-[1280px]">
+        {/* Header */}
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.25em] text-[#35F5B0]">
+            — Experience —
+          </p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
             Professional Journey
           </h2>
-
-          <p
-            className="
-              mx-auto
-              mt-4
-              max-w-[560px]
-              text-sm
-              leading-6
-              text-[#64748B]
-            "
-          >
+          <p className="mt-4 text-sm leading-7 text-[#94A3B8] sm:text-base">
             A timeline of my professional experience, technical growth, and the
             projects that shaped my career.
           </p>
         </div>
 
-        {/* =========================================
-            EXPERIENCE TIMELINE
-        ========================================= */}
-
-        <div className="relative mx-auto max-w-[900px]">
+        {/* Timeline */}
+        <div className="relative mt-16">
           {/* Vertical line */}
+          <div className="absolute left-[7px] top-2 hidden h-[calc(100%-16px)] w-px bg-gradient-to-b from-[#35F5B0]/40 via-white/10 to-transparent sm:block" />
 
-          <div
-            className="
-              absolute
-              bottom-4
-              left-[7px]
-              top-4
-              w-px
-              bg-gradient-to-b
-              from-[#35F5B0]
-              via-[#35D9D0]/60
-              to-[#45A9F5]/20
-              md:left-[20px]
-            "
-          />
+          <div className="flex flex-col gap-10">
+            {experiences.map((exp, i) => (
+              <div key={i} className="relative sm:pl-12">
+                {/* Dot */}
+                <span className="absolute left-0 top-2 hidden h-3.5 w-3.5 rounded-full border-2 border-[#35F5B0] bg-[#070C16] shadow-[0_0_12px_#35F5B0] sm:block" />
 
-          <div className="space-y-7">
-            {experiences.map((experience, index) => (
-              <div
-                key={experience.company}
-                className="
-                  group
-                  relative
-                  flex
-                  items-start
-                "
-              >
-                {/* =================================
-                    TIMELINE DOT
-                ================================= */}
-
-                <div
-                  className="
-                    relative
-                    z-10
-                    mt-7
-                    flex
-                    h-[15px]
-                    w-[15px]
-                    shrink-0
-                    items-center
-                    justify-center
-                    rounded-full
-                    border
-                    border-[#35F5B0]/50
-                    bg-[#070C16]
-                    shadow-[0_0_12px_rgba(53,245,176,0.15)]
-                    md:ml-[13px]
-                  "
-                >
-                  <span
-                    className="
-                      h-1.5
-                      w-1.5
-                      rounded-full
-                      bg-[#35F5B0]
-                      shadow-[0_0_8px_#35F5B0]
-                      transition-all
-                      duration-300
-                      group-hover:scale-150
-                    "
-                  />
-                </div>
-
-                {/* =================================
-                    CARD
-                ================================= */}
-
-                <div
-                  className="
-                    ml-7
-                    w-full
-                    rounded-xl
-                    border
-                    border-white/[0.07]
-                    bg-[#0D141F]/80
-                    p-5
-                    backdrop-blur-md
-                    transition-all
-                    duration-300
-                    group-hover:border-[#35F5B0]/20
-                    group-hover:bg-[#101923]
-                    group-hover:shadow-[0_15px_40px_rgba(0,0,0,0.18)]
-                    md:ml-8
-                    md:p-6
-                  "
-                >
-                  {/* Card top */}
-
-                  <div
-                    className="
-                      flex
-                      flex-col
-                      gap-3
-                      sm:flex-row
-                      sm:items-start
-                      sm:justify-between
-                    "
-                  >
+                <div className="rounded-2xl border border-white/[0.08] bg-[#0D141F]/70 p-6 backdrop-blur-md transition-colors duration-300 hover:border-[#35F5B0]/25 sm:p-7">
+                  <div className="flex flex-wrap items-start justify-between gap-3">
                     <div>
-                      {/* Type */}
-
-                      <div className="mb-2 flex items-center gap-2">
-                        <BriefcaseBusiness
-                          size={12}
-                          strokeWidth={2}
-                          className="text-[#35F5B0]"
-                        />
-
-                        <span
-                          className="
-                            font-mono
-                            text-[9px]
-                            font-semibold
-                            uppercase
-                            tracking-[0.16em]
-                            text-[#35F5B0]
-                          "
-                        >
-                          {experience.type}
-                        </span>
-                      </div>
-
-                      {/* Company */}
-
-                      <h3
-                        className="
-                          text-base
-                          font-semibold
-                          leading-6
-                          text-[#F1F5F9]
-                          transition-colors
-                          duration-300
-                          group-hover:text-[#35F5B0]
-                        "
-                      >
-                        {experience.company}
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-[#35F5B0]/25 bg-[#35F5B0]/5 px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-wider text-[#35F5B0]">
+                        <Briefcase size={11} />
+                        {exp.type}
+                      </span>
+                      <h3 className="mt-3 text-lg font-semibold text-white sm:text-xl">
+                        {exp.role}
                       </h3>
-
-                      {/* Role */}
-
-                      <p
-                        className="
-                          mt-1
-                          text-xs
-                          font-medium
-                          text-[#45A9F5]
-                        "
-                      >
-                        {experience.role}
+                      <p className="mt-1 bg-gradient-to-r from-[#35F5B0] to-[#45A9F5] bg-clip-text text-sm font-medium text-transparent">
+                        {exp.org}
                       </p>
                     </div>
 
-                    {/* Date */}
-
-                    <div
-                      className="
-                        flex
-                        shrink-0
-                        items-center
-                        gap-1.5
-                        rounded-full
-                        border
-                        border-white/[0.06]
-                        bg-[#151E2A]
-                        px-3
-                        py-1.5
-                      "
-                    >
-                      <CalendarDays size={11} className="text-[#64748B]" />
-
-                      <span
-                        className="
-                          font-mono
-                          text-[9px]
-                          text-[#64748B]
-                        "
-                      >
-                        {experience.duration}
-                      </span>
-                    </div>
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-[#0D141F] px-3 py-1.5 font-mono text-[11px] text-[#94A3B8]">
+                      <Calendar size={12} />
+                      {exp.period}
+                    </span>
                   </div>
 
-                  {/* Divider */}
-
-                  <div
-                    className="
-                      my-4
-                      h-px
-                      w-full
-                      bg-gradient-to-r
-                      from-[#35F5B0]/15
-                      via-white/[0.04]
-                      to-transparent
-                    "
-                  />
-
-                  {/* Description */}
-
-                  <ul className="space-y-2">
-                    {experience.description.map((item, itemIndex) => (
+                  <ul className="mt-4 flex flex-col gap-2">
+                    {exp.points.map((point, j) => (
                       <li
-                        key={itemIndex}
-                        className="
-                            flex
-                            items-start
-                            gap-2.5
-                            text-[11px]
-                            leading-5
-                            text-[#94A3B8]
-                            sm:text-xs
-                          "
+                        key={j}
+                        className="flex items-start gap-2.5 text-sm leading-6 text-[#94A3B8]"
                       >
-                        <span
-                          className="
-                              mt-[7px]
-                              h-1
-                              w-1
-                              shrink-0
-                              rounded-full
-                              bg-[#35F5B0]
-                              shadow-[0_0_5px_#35F5B0]
-                            "
-                        />
-
-                        <span>{item}</span>
+                        <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-[#35F5B0]" />
+                        {point}
                       </li>
                     ))}
                   </ul>

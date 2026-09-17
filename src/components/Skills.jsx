@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 import {
   FaReact,
@@ -35,54 +35,18 @@ import { DiMongodb } from "react-icons/di";
 // =====================================================
 
 const technicalSkills = [
-  {
-    name: "React.js",
-    icon: FaReact,
-  },
-  {
-    name: "Next.js",
-    icon: SiNextdotjs,
-  },
-  {
-    name: "JavaScript",
-    icon: FaJs,
-  },
-  {
-    name: "HTML5",
-    icon: FaHtml5,
-  },
-  {
-    name: "CSS3",
-    icon: FaCss3Alt,
-  },
-  {
-    name: "Tailwind CSS",
-    icon: BiLogoTailwindCss,
-  },
-  {
-    name: "Node.js",
-    icon: FaNodeJs,
-  },
-  {
-    name: "Express.js",
-    icon: SiExpress,
-  },
-  {
-    name: "MongoDB",
-    icon: DiMongodb,
-  },
-  {
-    name: "REST API",
-    icon: MdCode,
-  },
-  {
-    name: "Git & GitHub",
-    icon: FaGitAlt,
-  },
-  {
-    name: "Responsive Design",
-    icon: MdDevices,
-  },
+  { name: "React.js", icon: FaReact },
+  { name: "Next.js", icon: SiNextdotjs },
+  { name: "JavaScript", icon: FaJs },
+  { name: "HTML5", icon: FaHtml5 },
+  { name: "CSS3", icon: FaCss3Alt },
+  { name: "Tailwind CSS", icon: BiLogoTailwindCss },
+  { name: "Node.js", icon: FaNodeJs },
+  { name: "Express.js", icon: SiExpress },
+  { name: "MongoDB", icon: DiMongodb },
+  { name: "REST API", icon: MdCode },
+  { name: "Git & GitHub", icon: FaGitAlt },
+  { name: "Responsive Design", icon: MdDevices },
 ];
 
 // =====================================================
@@ -90,42 +54,15 @@ const technicalSkills = [
 // =====================================================
 
 const professionalTools = [
-  {
-    name: "GitHub",
-    icon: FaGithub,
-  },
-  {
-    name: "Figma",
-    icon: FaFigma,
-  },
-  {
-    name: "Postman",
-    icon: SiPostman,
-  },
-  {
-    name: "Firebase",
-    icon: SiFirebase,
-  },
-  {
-    name: "Netlify",
-    icon: SiNetlify,
-  },
-  {
-    name: "Vercel",
-    icon: SiVercel,
-  },
-  {
-    name: "npm",
-    icon: FaNpm,
-  },
-  {
-    name: "Chrome DevTools",
-    icon: FaChrome,
-  },
-  {
-    name: "WordPress",
-    icon: FaWordpress,
-  },
+  { name: "GitHub", icon: FaGithub },
+  { name: "Figma", icon: FaFigma },
+  { name: "Postman", icon: SiPostman },
+  { name: "Firebase", icon: SiFirebase },
+  { name: "Netlify", icon: SiNetlify },
+  { name: "Vercel", icon: SiVercel },
+  { name: "npm", icon: FaNpm },
+  { name: "Chrome DevTools", icon: FaChrome },
+  { name: "WordPress", icon: FaWordpress },
 ];
 
 // =====================================================
@@ -133,21 +70,19 @@ const professionalTools = [
 // =====================================================
 
 const languages = [
-  {
-    name: "Bangla",
-    level: "Native",
-    percentage: 100,
-  },
-  {
-    name: "English",
-    level: "Professional",
-    percentage: 85,
-  },
-  {
-    name: "Hindi",
-    level: "Conversational",
-    percentage: 70,
-  },
+  { name: "Bangla", level: "Native", percentage: 100 },
+  { name: "English", level: "Professional", percentage: 85 },
+  { name: "Hindi", level: "Conversational", percentage: 70 },
+];
+
+// =====================================================
+// FILTER TABS CONFIG
+// =====================================================
+
+const filterTabs = [
+  { id: "technical", label: "Technical Expertise" },
+  { id: "tools", label: "Professional Tools" },
+  { id: "languages", label: "Language Proficiency" },
 ];
 
 // =====================================================
@@ -155,6 +90,52 @@ const languages = [
 // =====================================================
 
 function Skills() {
+  const [activeTab, setActiveTab] = useState("technical");
+
+  const technicalRef = useRef(null);
+  const toolsRef = useRef(null);
+  const languagesRef = useRef(null);
+
+  const sectionRefs = {
+    technical: technicalRef,
+    tools: toolsRef,
+    languages: languagesRef,
+  };
+
+  // Click on tab -> smooth scroll to that section
+  const handleTabClick = (id) => {
+    setActiveTab(id);
+    const el = sectionRefs[id]?.current;
+    if (el) {
+      const yOffset = -90; // adjust for sticky navbar height
+      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  };
+
+  // Scroll spy -> auto highlight active tab while scrolling
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const matched = Object.keys(sectionRefs).find(
+              (key) => sectionRefs[key].current === entry.target,
+            );
+            if (matched) setActiveTab(matched);
+          }
+        });
+      },
+      { rootMargin: "-40% 0px -50% 0px", threshold: 0 },
+    );
+
+    Object.values(sectionRefs).forEach((ref) => {
+      if (ref.current) observer.observe(ref.current);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       id="skills"
@@ -167,10 +148,7 @@ function Skills() {
         sm:py-28
       "
     >
-      {/* =================================================
-          BACKGROUND EFFECTS
-      ================================================= */}
-
+      {/* BACKGROUND EFFECTS */}
       <div
         className="
           pointer-events-none
@@ -184,7 +162,6 @@ function Skills() {
           blur-[140px]
         "
       />
-
       <div
         className="
           pointer-events-none
@@ -199,10 +176,6 @@ function Skills() {
         "
       />
 
-      {/* =================================================
-          MAIN CONTAINER
-      ================================================= */}
-
       <div
         className="
           relative
@@ -215,22 +188,9 @@ function Skills() {
           xl:px-0
         "
       >
-        {/* =================================================
-            SECTION HEADER
-        ================================================= */}
-
-        <div className="mb-14 text-center">
-          <div
-            className="
-              mb-4
-              flex
-              items-center
-              justify-center
-              gap-3
-            "
-          >
-            {/* Left Line */}
-
+        {/* SECTION HEADER */}
+        <div className="mb-10 text-center">
+          <div className="mb-4 flex items-center justify-center gap-3">
             <span
               className="
                 h-px
@@ -240,9 +200,6 @@ function Skills() {
                 to-[#35F5B0]
               "
             />
-
-            {/* Label */}
-
             <span
               className="
                 font-mono
@@ -255,9 +212,6 @@ function Skills() {
             >
               Skills
             </span>
-
-            {/* Right Line */}
-
             <span
               className="
                 h-px
@@ -297,12 +251,52 @@ function Skills() {
         </div>
 
         {/* =================================================
+            FILTER TABS
+        ================================================= */}
+        <div
+          className="
+            mb-16
+            flex
+            flex-wrap
+            items-center
+            justify-center
+            gap-3
+          "
+        >
+          {filterTabs.map((tab) => {
+            const isActive = activeTab === tab.id;
+
+            return (
+              <button
+                key={tab.id}
+                onClick={() => handleTabClick(tab.id)}
+                className={`
+                  relative
+                  rounded-full
+                  border
+                  px-5
+                  py-2.5
+                  text-[12px]
+                  font-medium
+                  transition-all
+                  duration-300
+                  ${
+                    isActive
+                      ? "border-[#35F5B0]/30 bg-[#35F5B0]/10 text-[#35F5B0] shadow-[0_0_20px_rgba(53,245,176,0.12)]"
+                      : "border-white/[0.08] bg-[#0D141F]/60 text-[#94A3B8] hover:border-white/20 hover:text-[#CBD5E1]"
+                  }
+                `}
+              >
+                {tab.label}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* =================================================
             TECHNICAL EXPERTISE
         ================================================= */}
-
-        <div className="mb-20">
-          {/* Heading */}
-
+        <div ref={technicalRef} className="mb-20 scroll-mt-24">
           <div className="mb-7 flex items-center gap-3">
             <div
               className="
@@ -322,31 +316,14 @@ function Skills() {
             </div>
 
             <div>
-              <h3
-                className="
-                  text-base
-                  font-semibold
-                  text-[#F1F5F9]
-                "
-              >
+              <h3 className="text-base font-semibold text-[#F1F5F9]">
                 Technical Expertise
               </h3>
-
-              <p
-                className="
-                  mt-0.5
-                  text-[11px]
-                  text-[#64748B]
-                "
-              >
+              <p className="mt-0.5 text-[11px] text-[#64748B]">
                 Technologies and development skills
               </p>
             </div>
           </div>
-
-          {/* =================================================
-              TECHNICAL SKILLS GRID
-          ================================================= */}
 
           <div
             className="
@@ -360,7 +337,6 @@ function Skills() {
           >
             {technicalSkills.map((skill) => {
               const Icon = skill.icon;
-
               return (
                 <div
                   key={skill.name}
@@ -388,8 +364,6 @@ function Skills() {
                     hover:shadow-[0_12px_30px_rgba(0,0,0,0.18)]
                   "
                 >
-                  {/* Top Glow */}
-
                   <div
                     className="
                       absolute
@@ -406,9 +380,6 @@ function Skills() {
                       group-hover:w-full
                     "
                   />
-
-                  {/* Icon */}
-
                   <div
                     className="
                       flex
@@ -427,26 +398,11 @@ function Skills() {
                   >
                     <Icon
                       size={22}
-                      className="
-                        transition-transform
-                        duration-300
-                        group-hover:scale-110
-                      "
+                      className="transition-transform duration-300 group-hover:scale-110"
                     />
                   </div>
-
-                  {/* Text */}
-
                   <div className="mt-3 w-full min-w-0">
-                    <p
-                      className="
-                        truncate
-                        text-center
-                        text-[11px]
-                        font-medium
-                        text-[#CBD5E1]
-                      "
-                    >
+                    <p className="truncate text-center text-[11px] font-medium text-[#CBD5E1]">
                       {skill.name}
                     </p>
                   </div>
@@ -459,10 +415,7 @@ function Skills() {
         {/* =================================================
             PROFESSIONAL TOOLS
         ================================================= */}
-
-        <div className="mb-20">
-          {/* Heading */}
-
+        <div ref={toolsRef} className="mb-20 scroll-mt-24">
           <div className="mb-7 flex items-center gap-3">
             <div
               className="
@@ -482,29 +435,14 @@ function Skills() {
             </div>
 
             <div>
-              <h3
-                className="
-                  text-base
-                  font-semibold
-                  text-[#F1F5F9]
-                "
-              >
+              <h3 className="text-base font-semibold text-[#F1F5F9]">
                 Professional Tools
               </h3>
-
-              <p
-                className="
-                  mt-0.5
-                  text-[11px]
-                  text-[#64748B]
-                "
-              >
+              <p className="mt-0.5 text-[11px] text-[#64748B]">
                 Tools and platforms I work with
               </p>
             </div>
           </div>
-
-          {/* Tools Grid */}
 
           <div
             className="
@@ -518,7 +456,6 @@ function Skills() {
           >
             {professionalTools.map((tool) => {
               const Icon = tool.icon;
-
               return (
                 <div
                   key={tool.name}
@@ -541,8 +478,6 @@ function Skills() {
                     hover:shadow-[0_12px_30px_rgba(0,0,0,0.18)]
                   "
                 >
-                  {/* Icon */}
-
                   <div
                     className="
                       flex
@@ -561,24 +496,10 @@ function Skills() {
                   >
                     <Icon
                       size={18}
-                      className="
-                        transition-transform
-                        duration-300
-                        group-hover:scale-110
-                      "
+                      className="transition-transform duration-300 group-hover:scale-110"
                     />
                   </div>
-
-                  {/* Name */}
-
-                  <span
-                    className="
-                      truncate
-                      text-[11px]
-                      font-medium
-                      text-[#CBD5E1]
-                    "
-                  >
+                  <span className="truncate text-[11px] font-medium text-[#CBD5E1]">
                     {tool.name}
                   </span>
                 </div>
@@ -590,10 +511,7 @@ function Skills() {
         {/* =================================================
             LANGUAGE PROFICIENCY
         ================================================= */}
-
-        <div>
-          {/* Heading */}
-
+        <div ref={languagesRef} className="scroll-mt-24">
           <div className="mb-7 flex items-center gap-3">
             <div
               className="
@@ -613,38 +531,16 @@ function Skills() {
             </div>
 
             <div>
-              <h3
-                className="
-                  text-base
-                  font-semibold
-                  text-[#F1F5F9]
-                "
-              >
+              <h3 className="text-base font-semibold text-[#F1F5F9]">
                 Language Proficiency
               </h3>
-
-              <p
-                className="
-                  mt-0.5
-                  text-[11px]
-                  text-[#64748B]
-                "
-              >
+              <p className="mt-0.5 text-[11px] text-[#64748B]">
                 Communication skills
               </p>
             </div>
           </div>
 
-          {/* Language Grid */}
-
-          <div
-            className="
-              grid
-              grid-cols-1
-              gap-5
-              sm:grid-cols-2
-            "
-          >
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             {languages.map((language) => (
               <div
                 key={language.name}
@@ -662,59 +558,22 @@ function Skills() {
                   hover:shadow-[0_12px_30px_rgba(0,0,0,0.15)]
                 "
               >
-                {/* Language Top */}
-
-                <div
-                  className="
-                    mb-3
-                    flex
-                    items-center
-                    justify-between
-                  "
-                >
+                <div className="mb-3 flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <MdLanguage
                       size={15}
-                      className="
-                        text-[#35F5B0]
-                        transition-transform
-                        duration-300
-                        group-hover:scale-110
-                      "
+                      className="text-[#35F5B0] transition-transform duration-300 group-hover:scale-110"
                     />
-
-                    <span
-                      className="
-                        text-xs
-                        font-medium
-                        text-[#CBD5E1]
-                      "
-                    >
+                    <span className="text-xs font-medium text-[#CBD5E1]">
                       {language.name}
                     </span>
                   </div>
-
-                  <span
-                    className="
-                      font-mono
-                      text-[9px]
-                      text-[#64748B]
-                    "
-                  >
+                  <span className="font-mono text-[9px] text-[#64748B]">
                     {language.level}
                   </span>
                 </div>
 
-                {/* Progress */}
-
-                <div
-                  className="
-                    h-1
-                    overflow-hidden
-                    rounded-full
-                    bg-[#182230]
-                  "
-                >
+                <div className="h-1 overflow-hidden rounded-full bg-[#182230]">
                   <div
                     className="
                       h-full
@@ -726,22 +585,12 @@ function Skills() {
                       transition-all
                       duration-700
                     "
-                    style={{
-                      width: `${language.percentage}%`,
-                    }}
+                    style={{ width: `${language.percentage}%` }}
                   />
                 </div>
 
-                {/* Percentage */}
-
                 <div className="mt-2 text-right">
-                  <span
-                    className="
-                      font-mono
-                      text-[8px]
-                      text-[#475569]
-                    "
-                  >
+                  <span className="font-mono text-[8px] text-[#475569]">
                     {language.percentage}%
                   </span>
                 </div>

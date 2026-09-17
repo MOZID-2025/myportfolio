@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Code2, Layers3, Infinity } from "lucide-react";
 import {
   FaFacebook,
   FaGithub,
@@ -42,10 +42,32 @@ const socialLinks = [
   },
 ];
 
+// =========================================
+// TYPING TITLES
+// =========================================
+
+const typingTitles = [
+  "B2B & B2C Software Sales Specialist",
+  "IT Consultant & Business Analyst",
+  "MERN Stack Developer (Frontend)",
+  "E-Commerce Specialist META (POD)",
+];
+
 function Hero() {
   const [activeSlide, setActiveSlide] = useState(0);
 
-  // Auto slider
+  // =========================================
+  // TYPING ANIMATION STATE
+  // =========================================
+
+  const [titleIndex, setTitleIndex] = useState(0);
+  const [displayText, setDisplayText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  // =========================================
+  // AUTO SLIDER
+  // =========================================
+
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % navImages.length);
@@ -53,6 +75,44 @@ function Hero() {
 
     return () => clearInterval(interval);
   }, []);
+
+  // =========================================
+  // TYPING EFFECT
+  // =========================================
+
+  useEffect(() => {
+    const currentTitle = typingTitles[titleIndex];
+
+    let typingSpeed = isDeleting ? 35 : 75;
+
+    // When typing is complete
+    if (!isDeleting && displayText === currentTitle) {
+      typingSpeed = 2200;
+    }
+
+    // When deleting is complete
+    if (isDeleting && displayText === "") {
+      setIsDeleting(false);
+      setTitleIndex((prev) => (prev + 1) % typingTitles.length);
+
+      return;
+    }
+
+    const timeout = setTimeout(() => {
+      if (isDeleting) {
+        setDisplayText(currentTitle.substring(0, displayText.length - 1));
+      } else {
+        setDisplayText(currentTitle.substring(0, displayText.length + 1));
+      }
+
+      // Start deleting after pause
+      if (!isDeleting && displayText === currentTitle) {
+        setIsDeleting(true);
+      }
+    }, typingSpeed);
+
+    return () => clearTimeout(timeout);
+  }, [displayText, isDeleting, titleIndex]);
 
   return (
     <section
@@ -140,7 +200,7 @@ function Hero() {
 
             <h1
               className="
-                text-5xl
+                text-2xl
                 font-bold
                 leading-[1.02]
                 tracking-[-0.04em]
@@ -151,8 +211,12 @@ function Hero() {
             >
               Hi, I'm <span className="text-[#F1F5F9]">Abdul Mozid</span>
               <br />
-              <span className="bg-gradient-to-r from-[#35F5B0] via-[#35D9D0] to-[#45A9F5] bg-clip-text text-transparent">
-                Full-Stack Developer
+              {/* =========================================
+                  TYPING TITLE
+              ========================================= */}
+              <span className="inline-block min-h-[1.08em] text-[34px] leading-tight sm:text-[42px] lg:text-[46px] xl:text-[50px] bg-gradient-to-r from-[#35F5B0] via-[#35D9D0] to-[#45A9F5] bg-clip-text text-transparent">
+                {displayText}
+                <span className="ml-1 inline-block h-[0.9em] w-[3px] translate-y-[2px] animate-pulse bg-[#35F5B0]" />
               </span>
             </h1>
 
@@ -160,6 +224,7 @@ function Hero() {
 
             <div className="mt-7 flex items-center gap-3">
               <span className="h-px w-12 bg-gradient-to-r from-[#35F5B0] to-[#35D9D0]" />
+
               <p className="font-mono text-sm font-medium tracking-wide text-[#94A3B8]">
                 MERN Stack • Next.js • React
               </p>
@@ -179,7 +244,23 @@ function Hero() {
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <a
                 href="#contact"
-                className="group inline-flex h-12 items-center gap-2 rounded-full bg-gradient-to-r from-[#35F5B0] via-[#35D9D0] to-[#45A9F5] px-6 text-sm font-semibold text-[#061018] no-underline shadow-[0_0_25px_rgba(53,245,176,0.12)]
+                className="
+                  group
+                  inline-flex
+                  h-12
+                  items-center
+                  gap-2
+                  rounded-full
+                  bg-gradient-to-r
+                  from-[#35F5B0]
+                  via-[#35D9D0]
+                  to-[#45A9F5]
+                  px-6
+                  text-sm
+                  font-semibold
+                  text-[#061018]
+                  no-underline
+                  shadow-[0_0_25px_rgba(53,245,176,0.12)]
                   transition-all
                   duration-300
                   hover:scale-[1.03]
@@ -299,9 +380,7 @@ function Hero() {
               "
             />
 
-            {/* =====================================
-                CIRCLE
-            ===================================== */}
+            {/* Circle */}
 
             <div
               className="
@@ -390,49 +469,44 @@ function Hero() {
                 />
               </div>
 
-              {/* ==================================
-    FLOATING DECORATION
-================================== */}
-
               {/* Green dot rotating on circle border */}
+
               <div
                 className="
-    absolute
-    inset-0
-    animate-[spin_7s_linear_infinite]
-    rounded-full
-  "
+                  absolute
+                  inset-0
+                  animate-[spin_7s_linear_infinite]
+                  rounded-full
+                "
               >
                 <span
                   className="
-      absolute
-      left-1/2
-      top-0
-      h-3
-      w-3
-      -translate-x-1/2
-      -translate-y-1/2
-      rounded-full
-      bg-[#35F5B0]
-      shadow-[0_0_16px_#35F5B0]
-    "
+                    absolute
+                    left-1/2
+                    top-0
+                    h-3
+                    w-3
+                    -translate-x-1/2
+                    -translate-y-1/2
+                    rounded-full
+                    bg-[#35F5B0]
+                    shadow-[0_0_16px_#35F5B0]
+                  "
                 />
               </div>
 
-              {/* Blue dot rotating on circle border */}
+              {/* Blue rotating decoration */}
+
               <div
                 className="
-    absolute
-    inset-0
-    animate-[spin_10s_linear_infinite_reverse]
-    rounded-full
-  "
-              ></div>
+                  absolute
+                  inset-0
+                  animate-[spin_10s_linear_infinite_reverse]
+                  rounded-full
+                "
+              />
 
-              {/* =====================================
-                  SLIDER INDICATOR
-                  EXACT CENTER OF CIRCLE
-              ===================================== */}
+              {/* Slider Indicator */}
 
               <div
                 className="
@@ -477,14 +551,116 @@ function Hero() {
                   />
                 ))}
               </div>
+              {/* ==================================
+    FLOATING INFO BADGES
+================================== */}
+
+              {/* Projects Built - Top Right */}
+              <div
+                className="
+    absolute
+    right-[-35px]
+    top-[18px]
+    z-20
+    flex
+    items-center
+    gap-2
+    rounded-2xl
+    border
+    border-[#35F5B0]/30
+    bg-[#0D141F]/90
+    px-4
+    py-2.5
+    shadow-[0_10px_30px_rgba(0,0,0,0.35)]
+    backdrop-blur-xl
+    animate-[float_5s_ease-in-out_infinite]
+  "
+              >
+                <Code2 size={20} className="text-[#35F5B0]" />
+
+                <div>
+                  <div className="text-lg font-bold leading-none text-[#35F5B0]">
+                    10+
+                  </div>
+
+                  <div className="mt-1 whitespace-nowrap text-[9px] font-semibold uppercase tracking-wider text-[#94A3B8]">
+                    Projects Built
+                  </div>
+                </div>
+              </div>
+
+              {/* Tools Learned - Left */}
+              <div
+                className="
+    absolute
+    left-[-45px]
+    top-[42%]
+    z-20
+    flex
+    items-center
+    gap-2
+    rounded-2xl
+    border
+    border-[#45A9F5]/30
+    bg-[#0D141F]/90
+    px-4
+    py-2.5
+    shadow-[0_10px_30px_rgba(0,0,0,0.35)]
+    backdrop-blur-xl
+    animate-[float_6s_ease-in-out_infinite]
+  "
+              >
+                <Layers3 size={20} className="text-[#45A9F5]" />
+
+                <div>
+                  <div className="text-lg font-bold leading-none text-[#45A9F5]">
+                    10+
+                  </div>
+
+                  <div className="mt-1 whitespace-nowrap text-[9px] font-semibold uppercase tracking-wider text-[#94A3B8]">
+                    Tools Learned
+                  </div>
+                </div>
+              </div>
+
+              {/* Curiosity - Bottom Right */}
+              <div
+                className="
+    absolute
+    bottom-[18px]
+    right-[-30px]
+    z-20
+    flex
+    items-center
+    gap-2
+    rounded-2xl
+    border
+    border-[#35D9D0]/30
+    bg-[#0D141F]/90
+    px-4
+    py-2.5
+    shadow-[0_10px_30px_rgba(0,0,0,0.35)]
+    backdrop-blur-xl
+    animate-[float_7s_ease-in-out_infinite]
+  "
+              >
+                <Infinity size={22} className="text-[#35D9D0]" />
+
+                <div>
+                  <div className="text-lg font-bold leading-none text-[#35D9D0]">
+                    ∞
+                  </div>
+                  <div className="mt-1 whitespace-nowrap text-[9px] font-semibold uppercase tracking-wider text-[#94A3B8]">
+                    Curiosity
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* =========================================
-          SCROLL INDICATOR
-      ========================================= */}
+      {/* Scroll Indicator */}
 
       <div
         className="

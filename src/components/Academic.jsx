@@ -1,344 +1,97 @@
 "use client";
 
 import React from "react";
-import { GraduationCap, CalendarDays, MapPin } from "lucide-react";
+import { GraduationCap, MapPin, Calendar } from "lucide-react";
 
-const academicRecords = [
+const education = [
   {
     degree: "Bachelor of Science",
-    subject: "Computer Science & Engineering",
-    institution: "Your University Name",
+    field: "Computer Science & Engineering",
+    institute: "Your University Name",
     location: "Dhaka, Bangladesh",
-    duration: "2018 — 2022",
-    result: "CGPA: 3.14 / 4.00",
+    period: "2018 — 2022",
+    score: "CGPA: 3.14 / 4.00",
   },
   {
     degree: "Higher Secondary Certificate",
-    subject: "Science",
-    institution: "Your College Name",
+    field: "Science",
+    institute: "Your College Name",
     location: "Bangladesh",
-    duration: "2016 — 2018",
-    result: "GPA: 4.50 / 5.00",
+    period: "2015 — 2017",
+    score: "GPA: 4.50 / 5.00",
   },
   {
     degree: "Secondary School Certificate",
-    subject: "Science",
-    institution: "Your School Name",
+    field: "Science",
+    institute: "Your School Name",
     location: "Bangladesh",
-    duration: "2014 — 2016",
-    result: "GPA: 4.75 / 5.00",
+    period: "2014 — 2015",
+    score: "GPA: 4.75 / 5.00",
   },
 ];
 
-function Academic() {
+function Education() {
   return (
     <section
       id="education"
-      className="
-        relative
-        w-full
-        overflow-hidden
-        bg-[#0A1220]
-        py-20
-        sm:py-24
-      "
+      className="relative w-full overflow-hidden bg-[#0B1018] py-24 sm:py-28"
     >
-      {/* =========================================
-          BACKGROUND GLOW
-      ========================================= */}
+      <div className="pointer-events-none absolute right-[-200px] top-[10%] h-[450px] w-[450px] rounded-full bg-[#F4A340]/[0.035] blur-[140px]" />
 
-      <div
-        className="
-          pointer-events-none
-          absolute
-          left-1/2
-          top-[-200px]
-          h-[400px]
-          w-[700px]
-          -translate-x-1/2
-          rounded-full
-          bg-[#35F5B0]/[0.025]
-          blur-[130px]
-        "
-      />
-
-      {/* =========================================
-          1280px CONTAINER
-      ========================================= */}
-
-      <div
-        className="
-          relative
-          mx-auto
-          w-full
-          max-w-[1280px]
-          px-5
-          sm:px-8
-          lg:px-10
-          xl:px-0
-        "
-      >
-        {/* =========================================
-            HEADER
-        ========================================= */}
-
-        <div className="mb-12 text-center">
-          {/* Label */}
-
-          <div className="mb-3 flex items-center justify-center gap-3">
-            <span
-              className="
-                h-px
-                w-7
-                bg-gradient-to-r
-                from-transparent
-                to-[#35F5B0]
-              "
-            />
-
-            <span
-              className="
-                font-mono
-                text-[9px]
-                font-semibold
-                uppercase
-                tracking-[0.25em]
-                text-[#35F5B0]
-              "
-            >
+      <div className="relative mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-10 xl:px-0">
+        {/* Header */}
+        <div className="mb-16 text-center">
+          <div className="mb-4 flex items-center justify-center gap-3">
+            <span className="h-px w-8 bg-gradient-to-r from-transparent to-[#F4A340]" />
+            <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.25em] text-[#F4A340]">
               Education
             </span>
-
-            <span
-              className="
-                h-px
-                w-7
-                bg-gradient-to-l
-                from-transparent
-                to-[#35F5B0]
-              "
-            />
+            <span className="h-px w-8 bg-gradient-to-l from-transparent to-[#F4A340]" />
           </div>
-
-          <h2
-            className="
-              text-2xl
-              font-bold
-              tracking-[-0.03em]
-              text-[#F1F5F9]
-              sm:text-3xl
-            "
-          >
+          <h2 className="text-3xl font-bold tracking-[-0.03em] text-[#F1F5F9] sm:text-4xl">
             Academic Record
           </h2>
-
-          <p
-            className="
-              mx-auto
-              mt-3
-              max-w-[500px]
-              text-xs
-              leading-6
-              text-[#64748B]
-              sm:text-sm
-            "
-          >
+          <p className="mx-auto mt-4 max-w-[570px] text-sm leading-6 text-[#64748B]">
             My educational background and academic journey that helped build my
             technical foundation.
           </p>
         </div>
 
-        {/* =========================================
-            ACADEMIC CARDS
-        ========================================= */}
-
-        <div
-          className="
-            mx-auto
-            grid
-            max-w-[1050px]
-            grid-cols-1
-            gap-4
-            md:grid-cols-3
-          "
-        >
-          {academicRecords.map((record, index) => (
+        {/* Cards */}
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+          {education.map((edu, i) => (
             <div
-              key={record.degree}
-              className="
-                group
-                relative
-                overflow-hidden
-                rounded-xl
-                border
-                border-white/[0.06]
-                bg-[#0D141F]/90
-                p-5
-                transition-all
-                duration-300
-                hover:-translate-y-1
-                hover:border-[#35F5B0]/20
-                hover:bg-[#101A27]
-                hover:shadow-[0_15px_40px_rgba(0,0,0,0.2)]
-              "
+              key={i}
+              className="group relative overflow-hidden rounded-2xl border border-white/[0.06] bg-[#0D141F]/80 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#F4A340]/25 hover:shadow-[0_16px_40px_rgba(0,0,0,0.25)]"
             >
-              {/* Top gradient line */}
+              <div className="absolute left-1/2 top-0 h-px w-0 -translate-x-1/2 bg-gradient-to-r from-[#F4A340] to-[#F4C177] transition-all duration-300 group-hover:w-full" />
 
-              <div
-                className="
-                  absolute
-                  left-0
-                  right-0
-                  top-0
-                  h-px
-                  bg-gradient-to-r
-                  from-transparent
-                  via-[#35F5B0]/40
-                  to-transparent
-                  opacity-0
-                  transition-opacity
-                  duration-300
-                  group-hover:opacity-100
-                "
-              />
-
-              {/* Icon */}
-
-              <div
-                className="
-                  mb-5
-                  flex
-                  h-9
-                  w-9
-                  items-center
-                  justify-center
-                  rounded-lg
-                  border
-                  border-[#35F5B0]/10
-                  bg-[#35F5B0]/[0.05]
-                  text-[#35F5B0]
-                "
-              >
-                <GraduationCap size={18} strokeWidth={1.8} />
+              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#151E2A] text-[#F4A340] transition-all duration-300 group-hover:bg-[#F4A340]/10">
+                <GraduationCap size={20} />
               </div>
 
-              {/* Degree */}
-
-              <h3
-                className="
-                  text-sm
-                  font-semibold
-                  leading-5
-                  text-[#F1F5F9]
-                  transition-colors
-                  duration-300
-                  group-hover:text-[#35F5B0]
-                "
-              >
-                {record.degree}
+              <h3 className="mt-5 text-base font-semibold text-[#F1F5F9]">
+                {edu.degree}
               </h3>
-
-              {/* Subject */}
-
-              <p
-                className="
-                  mt-1
-                  text-xs
-                  font-medium
-                  text-[#45A9F5]
-                "
-              >
-                {record.subject}
+              <p className="mt-1 text-xs font-medium text-[#F4A340]">
+                {edu.field}
               </p>
 
-              {/* Divider */}
-
-              <div
-                className="
-                  my-4
-                  h-px
-                  bg-gradient-to-r
-                  from-[#35F5B0]/10
-                  via-white/[0.04]
-                  to-transparent
-                "
-              />
-
-              {/* Institution */}
-
-              <p
-                className="
-                  text-xs
-                  font-medium
-                  text-[#CBD5E1]
-                "
-              >
-                {record.institution}
-              </p>
-
-              {/* Location */}
-
-              <div
-                className="
-                  mt-2
-                  flex
-                  items-center
-                  gap-1.5
-                  text-[10px]
-                  text-[#64748B]
-                "
-              >
-                <MapPin size={11} />
-
-                {record.location}
+              <div className="mt-4 flex flex-col gap-1.5 border-t border-white/[0.06] pt-4">
+                <p className="text-[13px] text-[#CBD5E1]">{edu.institute}</p>
+                <p className="flex items-center gap-1.5 text-[11px] text-[#64748B]">
+                  <MapPin size={11} />
+                  {edu.location}
+                </p>
               </div>
 
-              {/* Bottom information */}
-
-              <div
-                className="
-                  mt-5
-                  flex
-                  items-center
-                  justify-between
-                  border-t
-                  border-white/[0.05]
-                  pt-4
-                "
-              >
-                {/* Date */}
-
-                <div className="flex items-center gap-1.5">
-                  <CalendarDays size={11} className="text-[#64748B]" />
-
-                  <span
-                    className="
-                      font-mono
-                      text-[9px]
-                      text-[#64748B]
-                    "
-                  >
-                    {record.duration}
-                  </span>
-                </div>
-
-                {/* Result */}
-
-                <span
-                  className="
-                    rounded-full
-                    border
-                    border-[#35F5B0]/15
-                    bg-[#35F5B0]/[0.04]
-                    px-2.5
-                    py-1
-                    font-mono
-                    text-[9px]
-                    font-medium
-                    text-[#35F5B0]
-                  "
-                >
-                  {record.result}
+              <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-white/[0.06] pt-4">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-[#0D141F] px-2.5 py-1 font-mono text-[10px] text-[#94A3B8]">
+                  <Calendar size={10} />
+                  {edu.period}
+                </span>
+                <span className="rounded-full border border-[#F4A340]/20 bg-[#F4A340]/5 px-2.5 py-1 font-mono text-[10px] font-semibold text-[#F4A340]">
+                  {edu.score}
                 </span>
               </div>
             </div>
@@ -349,4 +102,4 @@ function Academic() {
   );
 }
 
-export default Academic;
+export default Education;

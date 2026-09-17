@@ -18,7 +18,7 @@ const navItems = [
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDark, setIsDark] = useState(true);
-  const [activeLink, setActiveLink] = useState("#about");
+  const [activeLink, setActiveLink] = useState("#home");
 
   const handleNavClick = (href) => {
     setActiveLink(href);
@@ -73,7 +73,7 @@ function Navbar() {
                 no-underline
               "
             >
-              ABDUL MOZID
+              &lt; ABDUL MOZID /&gt;
             </span>
           </Link>
 
