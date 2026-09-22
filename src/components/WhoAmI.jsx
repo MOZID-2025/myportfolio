@@ -3,6 +3,7 @@
 import React from "react";
 import { Code2, Layers3, Infinity } from "lucide-react";
 import { useEffect, useState } from "react";
+import StarField from "./StarField";
 
 const navImages = ["/profile-1.png", "/profile-2.jpg", "/profile-3.png"];
 
@@ -32,6 +33,7 @@ function WhoAmI() {
         text-white
       "
     >
+      <StarField />
       {/* =========================================
           BACKGROUND GLOW
       ========================================= */}

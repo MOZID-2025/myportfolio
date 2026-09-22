@@ -10,6 +10,7 @@ import {
   FaWhatsappSquare,
 } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import StarField from "./StarField";
 
 const socialLinks = [
   {
@@ -299,6 +300,7 @@ function Hero() {
       id="home"
       className="relative min-h-[calc(100vh-84px)] w-full overflow-hidden bg-[#030712] text-white"
     >
+      <StarField />
       {/* =========================================
           BACKGROUND GLOW
       ========================================= */}
@@ -364,9 +366,7 @@ function Hero() {
               </span>
             </div>
 
-            {/* =========================================
-                HEADING
-            ========================================= */}
+            {/* =========HEADING============= */}
 
             <h1 className="text-xl font-bold leading-[1.02] tracking-[-0.04em] sm:text-6xl lg:text-[58px] xl:text-[56px]">
               Hi, I'm <span className="text-[#13F2B3]">Abdul Mozid</span>
@@ -379,9 +379,7 @@ function Hero() {
               </span>
             </h1>
 
-            {/* =========================================
-                ROLE
-            ========================================= */}
+            {/* ========ROLE=========== */}
 
             <div className="mt-7 flex items-center gap-3">
               <span className="h-px w-12 bg-gradient-to-r from-[#ec48999] to-[#ec4899]" />
